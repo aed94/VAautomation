@@ -8,14 +8,14 @@ driver = webdriver.Firefox()
 driver.implicitly_wait(30)
 driver.maximize_window()
 
-#Enter the url on which captcha is implemented
-print ("Navigating to https://www.bandhanbank.com/recruitment.aspx")
-driver.get("https://www.bandhanbank.com/recruitment.aspx")
+#Enter the url on which captcha is implemented..for now paste url here
+print ("Navigating to https://example.com")
+driver.get("https:example.com")
 
 print ("Finding the captcha image")
 
-#finding the captcha image on the page by its xpath
-captcha_img = driver.find_element_by_xpath("//html//body//form//div[4]//div[2]//div[2]//div//div//div[2]//div//ul//li[14]//div//div//img")
+#finding the captcha image on the page by its xpath..for now hardcode the xpath here
+captcha_img = driver.find_element_by_xpath("paste xpath here")
 
 #downloading the captcha from the source
 src = captcha_img.get_attribute('src')
@@ -29,6 +29,6 @@ print("Identifying captcha characters")
 driver.quit()
 
 #invoke the az captcha api
-captcha = CaptchaUpload("hxvgz3627mwjjf4mytqcxkdtrqgclzbp") #api key of your azcaptcha account
-print captcha.solve("/home/aman/Desktop/Temp_OCR/POC/captchanew.png")
+captcha = CaptchaUpload("yourapikey") #api key of your azcaptcha account
+print captcha.solve("/path/to/save/image/captchanew.png")
 print ("Captcha characters identified")
