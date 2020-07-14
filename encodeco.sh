@@ -1,14 +1,20 @@
 #!/bin/bash
-#echo " This is a script to decode base64 encoded strings encoded multiple times"
 
-[ $# -le 1 ] && { echo "Usage: $0 iterations filename"; exit 1; }
+[ $# -le 1 ] && { echo "Usage: $0 operation iterations filename"; exit 1; }
 
-iterations=$1
-filename=$2
+operation=$1
+iterations=$2
+filename=$3
 code=$( cat $filename )
 for ((i=1; i<=$iterations; i++)) 
 do
+if [ "$operation" == "decode" ]; then
 code=$( echo "$code" | base64 -di )
+elif [ "$operation" == "encode" ]; then
+code=$( echo "$code" | base64 )
+else 
+echo "Please try again"
+fi
 echo -e "\nIteration number $i...."
 echo $code
 done
