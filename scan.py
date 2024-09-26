@@ -1,3 +1,27 @@
+import subprocess
+import sys
+
+# Determine the correct pip command
+pip_command = "pip3" if sys.version_info.major == 3 else "pip"
+
+# List of required packages
+required_packages = [
+    "requests",
+    "urllib3",
+    "urllib",
+    "re"
+]
+# Function to install packages
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Check and install missing packages
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        install(package)
+
 import requests
 import urllib
 import urllib3
